@@ -11,6 +11,13 @@
   <ItemGroup>
     <None Remove="Backend\Password.json" />
     <None Remove="Backend\Password.txt" />
+    <None Remove="Images\background.png" />
+    <None Remove="Images\button.png" />
+    <None Remove="Images\buttonSet.png" />
+    <None Remove="Images\eye.png" />
+    <None Remove="Images\top.png" />
+    <None Remove="Images\topX.png" />
+    <None Remove="Images\xeye.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,6 +36,27 @@
     <Content Include="Backend\Password.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Images\button.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\buttonSet.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\top.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\topX.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\xeye.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\background.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\eye.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>

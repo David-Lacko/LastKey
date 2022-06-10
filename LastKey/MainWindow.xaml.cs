@@ -1,6 +1,10 @@
 ﻿using LastKey.Backend;
+using System;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Resources;
 
 namespace LastKey
 {
@@ -50,6 +54,11 @@ namespace LastKey
 
             }
         }
+        public void Enabled()
+        {
+            this.IsEnabled = true;
+        }
+
         public void Save()
         {
             if (Password.Visibility == Visibility.Hidden)
@@ -59,7 +68,7 @@ namespace LastKey
             if (loadPassword.LoadMPassword(Password.Password))
             {
                 savePassword.SavePasswords(loadPassword.LoadPasswords(Password.Password), AddNewLogin.Text);
-
+                
                 savePassword.SaveMPassword(AddNewLogin.Text);
                 Password.Password = AddNewLogin.Text;
                 PasswordShow.Text = AddNewLogin.Text;
@@ -83,6 +92,14 @@ namespace LastKey
                 PasswordShow.Text = Password.Password;
                 Password.Visibility = Visibility.Hidden;
                 PasswordShow.Visibility = Visibility.Visible;
+                Uri resourceUri = new Uri("Images/xeye.png", UriKind.Relative);
+                StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
+
+                BitmapFrame temp = BitmapFrame.Create(streamInfo.Stream);
+                var brush = new ImageBrush();
+                brush.ImageSource = temp;
+
+                Show.Background = brush;
 
             }
             else
@@ -90,6 +107,14 @@ namespace LastKey
                 Password.Password = PasswordShow.Text;
                 Password.Visibility = Visibility.Visible;
                 PasswordShow.Visibility = Visibility.Hidden;
+                Uri resourceUri = new Uri("Images/eye.png", UriKind.Relative);
+                StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
+
+                BitmapFrame temp = BitmapFrame.Create(streamInfo.Stream);
+                var brush = new ImageBrush();
+                brush.ImageSource = temp;
+
+                Show.Background = brush;
             }
         }
 
@@ -105,7 +130,17 @@ namespace LastKey
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
             AddNewLogin.Visibility = Visibility.Visible;
+            TestBlock.Visibility = Visibility.Visible;
             NewLogin.Visibility = Visibility.Visible;
+            ProgresNewLogin.Visibility=Visibility.Visible;
+            Uri resourceUri = new Uri("Images/topX.png", UriKind.Relative);
+            StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
+
+            BitmapFrame temp = BitmapFrame.Create(streamInfo.Stream);
+            var brush = new ImageBrush();
+            brush.ImageSource = temp;
+
+            CheckBoxNewLogin.Background = brush;
         }
 
 
@@ -113,6 +148,52 @@ namespace LastKey
         {
             AddNewLogin.Visibility = Visibility.Hidden;
             NewLogin.Visibility = Visibility.Hidden;
+            TestBlock.Visibility=Visibility.Hidden;
+            ProgresNewLogin.Visibility = Visibility.Hidden;
+            Uri resourceUri = new Uri("Images/top.png", UriKind.Relative);
+            StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
+
+            BitmapFrame temp = BitmapFrame.Create(streamInfo.Stream);
+            var brush = new ImageBrush();
+            brush.ImageSource = temp;
+
+            CheckBoxNewLogin.Background = brush;
+
         }
+
+        private void Password_MouseEnter(object sender, MouseEventArgs e)
+        {
+            for( int i = 0; i <= 100; i++)
+            {
+                Progres.Value = i;
+            }
+        }
+
+        private void Password_MouseLeave(object sender, MouseEventArgs e)
+        {
+            for (int i = 100 ; i >= 0; i--)
+            {
+                Progres.Value = i;
+            }
+
+        }
+
+        private void Password_MouseEnter2(object sender, MouseEventArgs e)
+        {
+            for (int i = 0; i <= 100; i++)
+            {
+                ProgresNewLogin.Value = i;
+            }
+        }
+
+        private void Password_MouseLeave2(object sender, MouseEventArgs e)
+        {
+            for (int i = 100; i >= 0; i--)
+            {
+                ProgresNewLogin.Value = i;
+            }
+        }
+
+        
     }
 }

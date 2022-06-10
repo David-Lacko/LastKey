@@ -22,6 +22,7 @@ namespace LastKey
 
         private void No_Click(object sender, RoutedEventArgs e)
         {
+            ((MainWindow)Application.Current.MainWindow).Enabled();
             this.Close();
 
         }

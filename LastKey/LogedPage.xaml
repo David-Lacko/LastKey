@@ -5,8 +5,9 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:LastKey"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="logedPage" Height="450" Width="800">
+      d:DesignHeight="500" d:DesignWidth="800"
+      Title="logedPage" Height="500
+      " Width="800" Background="White">
 
     <Grid>
 
@@ -23,6 +24,10 @@
             </DataGrid.Columns>
 
         </DataGrid>
+        <TextBox x:Name="PasswordText" Visibility="Hidden" HorizontalAlignment="Left" Margin="80,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="25"/>
+
+        <CheckBox x:Name="MyPassword" HorizontalAlignment="Left" Margin="59,15,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
 
     </Grid>
+
 </Page>

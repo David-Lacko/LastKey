@@ -70,9 +70,19 @@ namespace LastKey
             password = createPassword.GeneratePassword(selectedLenght);
             try
             {
-                passwords.Add(web.Text, password);
-                savePassword.SavePasswords(passwords, MPassword);
-                DataAdd();
+                if ((bool)MyPassword.IsChecked)
+                {
+                    passwords.Add(web.Text, PasswordText.Text);
+                    savePassword.SavePasswords(passwords, MPassword);
+                    DataAdd();
+                }
+                else
+                {
+                    passwords.Add(web.Text, password);
+                    savePassword.SavePasswords(passwords, MPassword);
+                    DataAdd();
+                }
+                
 
             }
             catch (ArgumentException)
@@ -119,5 +129,14 @@ namespace LastKey
             public string LastName { get; set; }
         }
 
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            PasswordText.Visibility = Visibility.Visible;
+        }
+
+        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            PasswordText.Visibility = Visibility.Hidden;
+        }
     }
 }
