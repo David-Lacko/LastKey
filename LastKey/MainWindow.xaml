@@ -161,7 +161,7 @@
             </Button.Background>
         </Button>
 
-        <PasswordBox x:Name="Password"    HorizontalAlignment="Left" Margin="515,240,0,0" BorderThickness="0.3" Password="Password" VerticalAlignment="Top"  Background="Transparent" Width="240" Height="30" FontSize="20" Visibility="Visible" PasswordChar="*" MouseEnter="Password_MouseEnter" MouseLeave="Password_MouseLeave"/>
+        <PasswordBox x:Name="Password"    HorizontalAlignment="Left" Margin="515,240,0,0" BorderThickness="0.3"  VerticalAlignment="Top"  Background="Transparent" Width="240" Height="30" FontSize="20" Visibility="Visible" PasswordChar="*" MouseEnter="Password_MouseEnter" MouseLeave="Password_MouseLeave"/>
         <TextBox x:Name="PasswordShow" TextWrapping="NoWrap" HorizontalAlignment="Left" Margin="515,240,0,0" BorderThickness="0.3" Padding="0,5,0,0" VerticalAlignment="Top" Visibility="Hidden" Background="Transparent"  Width="240" Height="30" MouseEnter="Password_MouseEnter" MouseLeave="Password_MouseLeave"/>
 
         <Button Style="{DynamicResource eye}" x:Name="Show" HorizontalAlignment="Left" BorderThickness="0" Margin="762,245,0,0" VerticalAlignment="Top" Click="Show_Click" Width="15" Height="12" >
@@ -181,7 +181,7 @@
                 <ScaleTransform ScaleX="2" ScaleY="2" />
             </CheckBox.LayoutTransform>
         </CheckBox>
-        <TextBox x:Name="AddNewLogin" HorizontalAlignment="Left" Margin="515,149,0,0"  Padding="0,5,0,0" BorderThickness="0.3" TextWrapping="NoWrap" VerticalAlignment="Top" Background="Transparent" Width="240" Height="30" Visibility="Hidden" MouseEnter="Password_MouseEnter2" MouseLeave="Password_MouseLeave2"  />
+        <TextBox x:Name="AddNewLogin" HorizontalAlignment="Left" Margin="515,149,0,0" Padding="0,5,0,0" BorderThickness="0.3" TextWrapping="NoWrap" VerticalAlignment="Top" Background="Transparent" Width="240" Height="30" Visibility="Hidden" MouseEnter="Password_MouseEnter2" MouseLeave="Password_MouseLeave2"  />
 
 
         <ProgressBar x:Name="Progres" Foreground="LightBlue"  HorizontalAlignment="Left" Height="4" Margin="515,265,0,0" Minimum="0" Maximum="100" VerticalAlignment="Top" Width="240" Background="White"/>

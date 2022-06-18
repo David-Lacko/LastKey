@@ -3,6 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Resources;
 
 namespace LastKey
 {
@@ -44,11 +47,20 @@ namespace LastKey
             {
                 Data temporalData = new Data();
                 temporalData.web = password.Key;
-                temporalData.pass = password.Value;
+                temporalData.pass = PasswordLength(password.Value);
                 data.Items.Add(temporalData);
 
             }
             web.Text = "";
+            PasswordText.Text = "";
+
+        }
+        private string PasswordLength( string value)
+        {
+            int[] array = new int[value.Length];
+            string myString = new string('*', value.Length);
+            return myString;
+
         }
 
 
@@ -72,9 +84,12 @@ namespace LastKey
             {
                 if ((bool)MyPassword.IsChecked)
                 {
-                    passwords.Add(web.Text, PasswordText.Text);
-                    savePassword.SavePasswords(passwords, MPassword);
-                    DataAdd();
+                    if (PasswordText.Text != "")
+                    {
+                        passwords.Add(web.Text, PasswordText.Text);
+                        savePassword.SavePasswords(passwords, MPassword);
+                        DataAdd();
+                    }
                 }
                 else
                 {
@@ -119,7 +134,14 @@ namespace LastKey
             row_list = (Data)data.SelectedItem;
             if (row_list != null)
             {
-                Clipboard.SetText(row_list.pass);
+                foreach (KeyValuePair<string, string> password in passwords)
+                {
+                    if (password.Key == row_list.web)
+                    {
+                        Clipboard.SetText(password.Value);
+                    }
+                }
+                //Clipboard.SetText(row_list.pass);
             }
         }
 
@@ -137,6 +159,50 @@ namespace LastKey
         private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
             PasswordText.Visibility = Visibility.Hidden;
+        }
+
+        private void Eye_Checked(object sender, RoutedEventArgs e)
+        {
+            data.Items.Clear();
+
+            foreach (KeyValuePair<string, string> password in passwords)
+            {
+                Data temporalData = new Data();
+                temporalData.web = password.Key;
+                temporalData.pass = password.Value;
+                data.Items.Add(temporalData);
+
+            }
+            Uri resourceUri = new Uri("Images/xeye.png", UriKind.Relative);
+            StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
+
+            BitmapFrame temp = BitmapFrame.Create(streamInfo.Stream);
+            var brush = new ImageBrush();
+            brush.ImageSource = temp;
+
+            Eye.Background = brush;
+        }
+
+        private void Eye_Unchecked(object sender, RoutedEventArgs e)
+        {
+            data.Items.Clear();
+
+            foreach (KeyValuePair<string, string> password in passwords)
+            {
+                Data temporalData = new Data();
+                temporalData.web = password.Key;
+                temporalData.pass = PasswordLength(password.Value);
+                data.Items.Add(temporalData);
+
+            }
+            Uri resourceUri = new Uri("Images/eye.png", UriKind.Relative);
+            StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
+
+            BitmapFrame temp = BitmapFrame.Create(streamInfo.Stream);
+            var brush = new ImageBrush();
+            brush.ImageSource = temp;
+
+            Eye.Background = brush;
         }
     }
 }
