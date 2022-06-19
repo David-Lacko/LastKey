@@ -12,6 +12,7 @@ namespace LastKey
     {
         SavePassword savePassword = new SavePassword();
         LoadPassword loadPassword = new LoadPassword();
+        CheckFiles checkFiles = new CheckFiles();
         LogedPage page1 = new LogedPage();
 
         public MainWindow()
@@ -194,6 +195,9 @@ namespace LastKey
             }
         }
 
-        
+        private void Window_Initialized(object sender, EventArgs e)
+        {
+            checkFiles.checkFiles();
+        }
     }
 }

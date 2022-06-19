@@ -12,7 +12,7 @@ namespace LastKey.Backend
         {
             string sha = sha256.sha256(password);
             string text = File.ReadAllText("Backend/Password.txt");
-
+            
             if (sha == text)
             {
                 return true;
