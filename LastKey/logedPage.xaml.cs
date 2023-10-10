@@ -14,7 +14,6 @@ namespace LastKey
     /// </summary>
     public partial class LogedPage : Page
     {
-        private int count;
         private readonly int[] lenght = { 15, 25, 50, 100 };
         private int selectedLenght;
         private string password;
@@ -79,22 +78,26 @@ namespace LastKey
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
-            count++;
             password = createPassword.GeneratePassword(selectedLenght);
+            var webText = "Name";
+            if (web.Text != "Type your Web here...")
+            {
+                webText = web.Text;
+            }
             try
             {
                 if ((bool)MyPassword.IsChecked)
                 {
                     if (PasswordText.Text != "" && PasswordText.Text != "Type your Password here...")
                     {
-                        passwords.Add(web.Text, PasswordText.Text);
+                        passwords.Add(webText, PasswordText.Text);
                         savePassword.SavePasswords(passwords, MPassword);
                         DataAdd();
                     }
                 }
                 else
                 {
-                    passwords.Add(web.Text, password);
+                    passwords.Add(webText, password);
                     savePassword.SavePasswords(passwords, MPassword);
                     DataAdd();
                 }
