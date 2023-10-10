@@ -51,9 +51,10 @@ namespace LastKey
                 data.Items.Add(temporalData);
 
             }
-            web.Text = "";
-            PasswordText.Text = "";
-
+            web.Text = "Type your Web here...";
+            web.Foreground = Brushes.Gray;
+            PasswordText.Text = "Type your Password here...";
+            PasswordText.Foreground = Brushes.Gray;
         }
         private string PasswordLength( string value)
         {
@@ -84,7 +85,7 @@ namespace LastKey
             {
                 if ((bool)MyPassword.IsChecked)
                 {
-                    if (PasswordText.Text != "")
+                    if (PasswordText.Text != "" && PasswordText.Text != "Type your Password here...")
                     {
                         passwords.Add(web.Text, PasswordText.Text);
                         savePassword.SavePasswords(passwords, MPassword);
@@ -111,12 +112,11 @@ namespace LastKey
             confirmDeletePopup confirmPopup = new confirmDeletePopup();
             confirmPopup.Show();
 
-
-
         }
 
         public void DeletePassword()
         {
+            row_list = (Data)data.SelectedItem;
             if (row_list != null)
             {
                 passwords.Remove(row_list.web);
@@ -126,11 +126,35 @@ namespace LastKey
 
         }
 
-        private void data_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {
+            TextBox textBox = (TextBox)sender;
+            if (textBox.Text == "Type your Web here..." || textBox.Text == "Type your Password here...")
+            {
+                textBox.Text = "";
+                textBox.Foreground = Brushes.Black;
+            }
+        }
+
+        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+            if (textBox.Text == "" && textBox.Name == "web")
+            {
+                textBox.Text = "Type your Web here...";
+                textBox.Foreground = Brushes.Gray;
+            }
+            else if (textBox.Text == "" && textBox.Name == "PasswordText")
+            {
+                textBox.Text = "Type your Password here...";
+                textBox.Foreground = Brushes.Gray;
+            }
+        }
 
 
-            DataGrid dataGrid = (DataGrid)sender;
+
+        private void CopyButtonClick(object sender, RoutedEventArgs e)
+        {
             row_list = (Data)data.SelectedItem;
             if (row_list != null)
             {
@@ -141,9 +165,9 @@ namespace LastKey
                         Clipboard.SetText(password.Value);
                     }
                 }
-                //Clipboard.SetText(row_list.pass);
             }
         }
+
 
         public class Item
         {
@@ -154,11 +178,15 @@ namespace LastKey
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
             PasswordText.Visibility = Visibility.Visible;
+            pasvordLenght.Visibility = Visibility.Hidden;
+            CustomPasswordLabel.Visibility = Visibility.Hidden;
         }
 
         private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
             PasswordText.Visibility = Visibility.Hidden;
+            pasvordLenght.Visibility = Visibility.Visible;
+            CustomPasswordLabel.Visibility = Visibility.Visible;
         }
 
         private void Eye_Checked(object sender, RoutedEventArgs e)

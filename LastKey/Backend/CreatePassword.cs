@@ -16,21 +16,8 @@ namespace LastKey.Backend
             {
                 res.Append(valid[rnd.Next(valid.Length)]);
             }
-
-
-            return len(res.ToString());
-        }
-        public string len(string password)
-        {
-            int add = 0;
-
-            while ((password.Length + add) % 16 != 0)
-            {
-                add++;
-
-            }
-            string myString = new string(' ', add);
-            return password + myString;
+            //remove all spaces on end
+            return res.ToString().TrimEnd();
         }
     }
 

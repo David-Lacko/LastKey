@@ -95,31 +95,124 @@
 
     <Grid>
 
-        <Button x:Name="Add" Content="Add" HorizontalAlignment="Left" Margin="390,42.5,0,0" VerticalAlignment="Top" Height="30" Width="130" Click="Add_Click" />
-        <Button x:Name="Delete" Content="Delete" HorizontalAlignment="Left" Margin="600,42.5,0,0" Height="30" Width="130" VerticalAlignment="Top" Click="Delete_Click"/>
-        <TextBox x:Name="web" HorizontalAlignment="Left" Margin="80,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="25"/>
-        <ComboBox x:Name="pasvordLenght" HorizontalAlignment="Left" Margin="310,45,0,0" VerticalAlignment="Top" Height="25" Width="50" SelectionChanged="pasvordLenght_SelectionChanged" />
-        <DataGrid x:Name="data" Margin="35,89,40,65" SelectionMode="Single" IsReadOnly="True" SelectionChanged="data_SelectionChanged" >
-
+        <Button x:Name="Add" Content="Add" HorizontalAlignment="Left" Margin="603,23,0,0" VerticalAlignment="Top" Height="45" Width="130" Click="Add_Click">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="#007acc" />
+                    <Setter Property="Foreground" Value="White" />
+                    <Setter Property="FontWeight" Value="Bold" />
+                    <Setter Property="FontSize" Value="19" />
+                    <Setter Property="FontFamily" Value="Arial Narrow" />
+                    <Setter Property="BorderThickness" Value="0" />
+                    <Setter Property="Padding" Value="10,5" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border Name="border" 
+                        BorderThickness="1"
+                        Padding="4,2" 
+                        BorderBrush="#007acc" 
+                        CornerRadius="3" 
+                        Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="FontSize" Value="21" />
+                                        <Setter Property="BorderThickness" Value="5" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
+        <TextBox x:Name="web" HorizontalAlignment="Left" Margin="35,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="187" Height="25" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"/>
+        <ComboBox x:Name="pasvordLenght" HorizontalAlignment="Left" Margin="531,33,0,0" VerticalAlignment="Top" Height="25" Width="55" SelectionChanged="pasvordLenght_SelectionChanged">
+            <ComboBox.ItemContainerStyle>
+                <Style TargetType="ComboBoxItem">
+                    <Setter Property="Background" Value="White"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="FontSize" Value="14"/>
+                    <Setter Property="FontFamily" Value="Arial Narrow"/>
+                </Style>
+            </ComboBox.ItemContainerStyle>
+        </ComboBox>
+        <DataGrid x:Name="data" Margin="35,89,40,65" HeadersVisibility="Column" IsReadOnly="True" AlternatingRowBackground="White" RowBackground="GhostWhite">
+            <DataGrid.Resources>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Background" Value="#007acc"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="FontSize" Value="16"/>
+                    <Setter Property="FontFamily" Value="Arial Narrow"/>
+                </Style>
+            </DataGrid.Resources>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Web" Width="150"  Binding="{Binding web}"/>
-                <DataGridTextColumn Header="Password" FontSize="10" Width="*" Binding="{Binding pass}" />
+                <DataGridTemplateColumn Width="50">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="Delete_Click" Background="White" BorderThickness="0">
+                                <Viewbox Width="11" Height="11">
+                                    <Canvas Width="11" Height="11">
+                                        <Path Data="M0,0 L11,11 M0,11 L11,0" Stroke="CadetBlue" StrokeThickness="4" />
+                                    </Canvas>
+                                </Viewbox>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Width="250" Foreground="Black" Binding="{Binding web}">
+                    <DataGridTextColumn.Header>
+                        <TextBlock Text="Web" Foreground="White" FontWeight="Bold" FontSize="16"/>
+                    </DataGridTextColumn.Header>
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="IsEnabled" Value="False" />
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Foreground="Black" FontSize="10" Width="*" Binding="{Binding pass}">
+                    <DataGridTextColumn.Header>
+                        <TextBlock Text="Password" Foreground="White" FontWeight="Bold" FontSize="14"/>
+                    </DataGridTextColumn.Header>
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="IsEnabled" Value="False"  />
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTemplateColumn Width="50">
+                    <DataGridTemplateColumn.Header>
+                        <CheckBox Style="{DynamicResource CheckBoxStyle1}" x:Name="Eye" Margin="15.5,0,0,0" BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="Eye_Checked" Unchecked="Eye_Unchecked">
+                            <CheckBox.Background>
+                                <ImageBrush ImageSource="Images/eye.png" />
+                            </CheckBox.Background>
+                            <CheckBox.LayoutTransform>
+                                <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                            </CheckBox.LayoutTransform>
+                        </CheckBox>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="CopyButtonClick" Background="Transparent" BorderThickness="0">
+                                <Viewbox Width="20" Height="20">
+                                    <Canvas Width="20" Height="20">
+                                        <Path Data="M 5.001563 8.001563 L 15 8.001563 C 15.553125 8.001563 15.998438 8.446875 15.998438 9 L 15.998438 18.998438 C 15.998438 19.551563 15.553125 20.001563 15 20.001563 L 5.001563 20.001563 C 4.448438 20.001563 3.998438 19.551563 3.998438 18.998438 L 3.998438 9 C 3.998438 8.446875 4.448438 8.001563 5.001563 8.001563 Z M 5.001563 8.001563 " Stroke="Black" StrokeThickness="2" />
+                                        <Path Data="M 8.001563 6 L 8.001563 5.001563 C 8.001563 4.448438 8.446875 3.998438 9 3.998438 L 18.998438 3.998438 C 19.551563 3.998438 20.001563 4.448438 20.001563 5.001563 L 20.001563 15 C 20.001563 15.553125 19.551563 15.998438 18.998438 15.998438 L 18 15.998438" Stroke="Black" StrokeThickness="1" />
 
+                                    </Canvas>
+                                </Viewbox>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
-
         </DataGrid>
-        <TextBox x:Name="PasswordText" Visibility="Hidden" HorizontalAlignment="Left" Margin="80,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="25"/>
-
-        <CheckBox x:Name="MyPassword" HorizontalAlignment="Left" Margin="59,15,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
-        <CheckBox Style="{DynamicResource CheckBoxStyle1}" x:Name="Eye" BorderThickness="0"  HorizontalAlignment="Left" Margin="723,92,0,0" VerticalAlignment="Top" Checked="Eye_Checked" Unchecked="Eye_Unchecked">
-            <CheckBox.Background>
-                <ImageBrush ImageSource="Images/eye.png" />
-
-            </CheckBox.Background>
-            <CheckBox.LayoutTransform>
-                <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
-            </CheckBox.LayoutTransform>
-        </CheckBox>
+        <TextBox x:Name="PasswordText" Visibility="Hidden" HorizontalAlignment="Left" Margin="298,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="288" Height="25" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"/>
+        <CheckBox x:Name="MyPassword" HorizontalAlignment="Left" Margin="267,38,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
+        <Label x:Name="CustomPasswordLabel" Content="Custom Password" HorizontalAlignment="Left" Margin="283,33,0,0" VerticalAlignment="Top" IsEnabled="False" Foreground="Gray" FontWeight="Bold" FontSize="14" FontFamily="Arial Narrow" Width="135"/>
 
     </Grid>
 
