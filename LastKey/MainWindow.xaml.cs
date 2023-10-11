@@ -31,7 +31,7 @@ namespace LastKey
             {
 
                 
-                page1.setMPassword(Password.Password, (bool)old.IsChecked);
+                page1.setMPassword(Password.Password);
                 this.Content = page1;
                 Application.Current.MainWindow.Width = 800;
                 Application.Current.MainWindow.Height = 500;
