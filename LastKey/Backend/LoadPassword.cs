@@ -20,7 +20,7 @@ namespace LastKey.Backend
             return false;
         }
 
-        public Dictionary<string, string> LoadPasswords(string MPassword)
+        public Dictionary<string, string> LoadPasswords(string MPassword, bool old = false)
         {
             string json = File.ReadAllText("Backend/Password.json");
 
@@ -34,7 +34,14 @@ namespace LastKey.Backend
                 {
                     try
                     {
-                        dictionary.Add(password.Name, StringCipher.Decrypt(password.PasswordKey, MPassword));
+                        if (old)
+                        {
+                            dictionary.Add(password.Name, StringCipher.DecryptOLD(password.PasswordKey, MPassword));
+                        }
+                        else
+                        {
+                            dictionary.Add(password.Name, StringCipher.Decrypt(password.PasswordKey, MPassword));
+                        }
                     }
                     catch (ArgumentException) { }
 

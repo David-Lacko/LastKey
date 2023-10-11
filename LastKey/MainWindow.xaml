@@ -164,6 +164,7 @@
 
         <PasswordBox x:Name="Password"    HorizontalAlignment="Left" Margin="515,240,0,0" BorderThickness="0.3"  VerticalAlignment="Top"  Background="Transparent" Width="240" Height="30" FontSize="20" Visibility="Visible" PasswordChar="*" MouseEnter="Password_MouseEnter" MouseLeave="Password_MouseLeave"/>
         <TextBox x:Name="PasswordShow" TextWrapping="NoWrap" HorizontalAlignment="Left" Margin="515,240,0,0" BorderThickness="0.3" Padding="0,5,0,0" VerticalAlignment="Top" Visibility="Hidden" Background="Transparent"  Width="240" Height="30" MouseEnter="Password_MouseEnter" MouseLeave="Password_MouseLeave"/>
+        <CheckBox x:Name="old" Content="Convert from old version" Margin="515,400,0,0"  FontSize="20"  VerticalAlignment="Top"  HorizontalAlignment="Left" Foreground="red" IsChecked="False" Height="38" Width="254" />
 
         <Button Style="{DynamicResource eye}" x:Name="Show" HorizontalAlignment="Left" BorderThickness="0" Margin="760,247,0,0" VerticalAlignment="Top" Click="Show_Click" Width="18" Height="16" RenderTransformOrigin="0.194,1.535" >
             <Button.Background>

@@ -28,12 +28,22 @@ namespace LastKey
             InitializeComponent();
 
         }
-        public void setMPassword(string masterPassword)
+        public void setMPassword(string masterPassword,bool old)
         {
             MPassword = masterPassword;
             pasvordLenght.ItemsSource = lenght;
             pasvordLenght.SelectedIndex = 3;
-            passwords = loadPassword.LoadPasswords(MPassword);
+
+            if (old)
+            {
+                passwords = loadPassword.LoadPasswords(MPassword,old);
+
+                savePassword.SavePasswords(passwords, MPassword);
+            }
+            else
+            {
+                passwords = loadPassword.LoadPasswords(MPassword);
+            }
             DataAdd();
 
         }

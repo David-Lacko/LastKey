@@ -30,8 +30,8 @@ namespace LastKey
             if (loadPassword.LoadMPassword(Password.Password))
             {
 
-
-                page1.setMPassword(Password.Password);
+                
+                page1.setMPassword(Password.Password, (bool)old.IsChecked);
                 this.Content = page1;
                 Application.Current.MainWindow.Width = 800;
                 Application.Current.MainWindow.Height = 500;
