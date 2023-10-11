@@ -46,5 +46,5 @@ LastKey has been tested for security vulnerabilities and issues by [Snyk](https:
 
 ## Contact
 
-If you have any questions, feedback, or want to report an issue or request a feature for LastKey, please [create a new issue](https://github.com/David-Lacko/LastKey/issues) on our GitHub repository.
+If you have any questions, feedback, or want to report an issue or request a feature for LastKey, please [create a new issue](https://github.com/David-Lacko/LastKey/issues) on this GitHub repository.
 
